@@ -114,13 +114,12 @@ export const AddItemProvider = ({ children }) => {
   };
 
   const handleDeleteItem = async (itemId) => {
-    const new_payments = payments.filter((payment) => payment.id !== itemId);
-
-    handleReload();
     await fetch(`https://blanco-backend.vercel.app/api/v1/expences/${itemId}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
+    handleReload();
+
     toast(<div className="text-red-500">Item deleted successfully !</div>, {
       description: (
         <div className="text-[12px] text-black/50">
@@ -128,7 +127,6 @@ export const AddItemProvider = ({ children }) => {
         </div>
       ),
     });
-    setPayments(new_payments);
   };
 
   const setStatus = (amount) => {
