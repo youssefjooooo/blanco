@@ -10,7 +10,7 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
-import { ChevronRight, X } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useAddItem } from "../../context/addItemContext";
 export const AddNewCard = ({ setShowNew }) => {
@@ -43,7 +43,7 @@ export const AddNewCard = ({ setShowNew }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
       exit={{ opacity: 0 }}
-      className="absolute left-0 top-0 w-full h-full bg-black/50 backdrop-blur-lg flex items-center justify-center z-20 ">
+      className="absolute left-0 top-0 w-full h-full bg-black/50 backdrop-blur-lg flex items-center justify-center z-20 rounded-xl">
       <Card className="">
         <CardHeader>
           <CardTitle className={`text-xl font-semibold`}>

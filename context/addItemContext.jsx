@@ -10,19 +10,25 @@ const addItemContext = createContext();
 export const AddItemProvider = ({ children }) => {
   const [payments, setPayments] = useState([]);
   const [reload, setReload] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getPayments = async () => {
       try {
+        setLoading(true);
         const res = await fetch(
           "https://blanco-backend.vercel.app/api/v1/expences"
         );
+
         if (!res.ok)
           throw new Error("There was a problem with the fetch request.");
+
         const data = await res.json();
         setPayments(data.data.expences);
       } catch (err) {
         console.error("Error", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -143,6 +149,7 @@ export const AddItemProvider = ({ children }) => {
         setStatus,
         handleDeleteItem,
         handleUpdateItem,
+        loading,
       }}>
       {children}
     </addItemContext.Provider>

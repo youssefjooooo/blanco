@@ -37,7 +37,8 @@ export default function DataTable({ data, showNew, setShowNew }) {
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const { handleDeleteItem } = useAddItem();
+
+  const { handleDeleteItem, loading } = useAddItem();
   const columns = getColumns(handleDeleteItem);
   const table = useReactTable({
     data,
@@ -61,7 +62,7 @@ export default function DataTable({ data, showNew, setShowNew }) {
   return (
     <div className="w-full ">
       <TableHeaders table={table} setShowNew={setShowNew} showNew={showNew} />
-      <D_table table={table} columns={columns} />
+      <D_table table={table} columns={columns} loading={loading} />
       <Navigation table={table} />
     </div>
   );
@@ -121,7 +122,7 @@ const Navigation = ({ table }) => {
   );
 };
 
-const D_table = ({ table, columns }) => {
+const D_table = ({ table, columns, loading }) => {
   return (
     <div className="rounded-md border">
       <Table>
@@ -157,7 +158,7 @@ const D_table = ({ table, columns }) => {
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                {loading ? "Loading...." : "No results."}
               </TableCell>
             </TableRow>
           )}
