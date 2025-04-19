@@ -17,11 +17,11 @@ const AccountInfo = ({ userData }) => {
 
   return (
     <motion.div
-      initial={{ y: -5, opacity: 0, filter: "blur(2px)" }}
-      animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-      exit={{ y: -10, opacity: 0, filter: "blur(10px)" }}
+      initial={{ y: -5, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -5, opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="rounded-b-md rounded-tr-3xl rounded-tl-0 shadow-lg border p-2 absolute bg-black text-white left-0 w-full -bottom-2 transform translate-y-full z-10 flex flex-col gap-5">
+      className="rounded-b-md rounded-t-3xl  shadow-lg border p-2 absolute bg-black text-white left-0 w-full -bottom-2 transform translate-y-full z-10 flex flex-col gap-5">
       <div className=" relative mb-5">
         <div className="overflow-hidden w-full h-24 rounded-3xl">
           <Image
