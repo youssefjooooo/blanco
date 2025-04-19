@@ -15,14 +15,17 @@ function UserCard() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/v1/users/login", {
-          next: { revalidate: 60 * 10 },
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          method: "GET",
-        });
+        const res = await fetch(
+          "https://blanco-backend.vercel.app/api/v1/users/login",
+          {
+            next: { revalidate: 60 * 10 },
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            method: "GET",
+          }
+        );
 
         if (!res.ok) throw new Error("There was a problem!!");
         const data = await res.json();
