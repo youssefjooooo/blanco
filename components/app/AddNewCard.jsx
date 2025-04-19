@@ -41,10 +41,10 @@ export const AddNewCard = ({ setShowNew }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.2 }}
       exit={{ opacity: 0 }}
-      className="absolute left-0 top-0 w-full h-full bg-black/50 backdrop-blur-lg flex items-center justify-center z-20 rounded-xl">
-      <Card className="">
+      className="absolute left-0 top-0 w-full h-full bg-black/70 backdrop-blur-lg flex items-center justify-center z-90 rounded-xl ">
+      <Card className=" w-[60%]">
         <CardHeader>
           <CardTitle className={`text-xl font-semibold`}>
             So, What stupid shit did you spend your money on this time ?! 😂🤦‍♂️
@@ -52,9 +52,7 @@ export const AddNewCard = ({ setShowNew }) => {
           <CardDescription>Enter your purchase information</CardDescription>
         </CardHeader>
         <CardContent>
-          <form
-            className={`flex flex-col gap-5 w-[400px]`}
-            onSubmit={handleSubmit}>
+          <form className={`flex flex-col gap-5`} onSubmit={handleSubmit}>
             <div>
               <label className="font-semibold" htmlFor="title">
                 Title
@@ -96,7 +94,7 @@ export const AddNewCard = ({ setShowNew }) => {
             </div>
           </form>
         </CardContent>
-        <CardFooter className={`flex items-center mt-5 justify-between gap-4`}>
+        <CardFooter className={`flex items-center mt-5 justify-center gap-4`}>
           <Button
             onClick={() => setShowNew(false)}
             className={`bg-white  flex items-center justify-between shadow-sm text-black border hover:bg-[#ddd]/20 hover:text-black`}>
@@ -104,7 +102,7 @@ export const AddNewCard = ({ setShowNew }) => {
           </Button>
           <Button
             onClick={handleSubmit}
-            className={`w-[120px] flex items-center justify-between shadow-sm `}>
+            className={`w-[90%] flex items-center justify-between shadow-sm `}>
             Done <ChevronRight />
           </Button>
         </CardFooter>

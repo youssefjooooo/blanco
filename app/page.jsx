@@ -43,7 +43,7 @@ function Home() {
         animate={{ opacity: 1, filter: "blur(0px)" }}
         transition={{ duration: 0.2 }}
         exit={{ opacity: 0 }}
-        className=" w-full h-full p-10 rounded-xl border bg-white">
+        className=" w-full h-full p-10 rounded-xl  bg-white">
         {/* OVERVIEW  */}
         <Overview />
         {/* THE DATA TABLE  */}
