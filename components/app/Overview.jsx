@@ -35,13 +35,13 @@ export const Overview = () => {
     },
   ];
   return (
-    <div className="flex flex-col gap-7 mb-8">
+    <div className="flex flex-col gap-4 mb-8">
       <div className="w-full flex items-center justify-between gap-10">
         <h2 className="text-4xl font-bold ">Expences Overview</h2>
         <UserCard />
       </div>
 
-      <div className="border rounded-xl gap-2 flex items-center justify-center p-3 px-5">
+      <div className="border rounded-4xl gap-2 flex items-center justify-center p-3  bg-black">
         {overview_data.map((item, index) => (
           <MiniCard key={index} data={item} />
         ))}

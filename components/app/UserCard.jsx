@@ -41,8 +41,8 @@ function UserCard() {
 
   const [openAcc, setOpenAcc] = useState(false);
   return (
-    userData && (
-      <div className="rounded-full shadow-md p-2 flex items-center justify-between gap-18 min-w-[400px] relative z-50 border">
+    userData.name && (
+      <div className="rounded-xl rounded-b-3xl shadow-md p-2 flex items-center justify-between gap-18 min-w-[400px] relative z-50 border">
         <p className="font-semibold text-2xl px-2 pl-6">{userData.name}</p>
         <div
           onClick={() => setOpenAcc(!openAcc)}
