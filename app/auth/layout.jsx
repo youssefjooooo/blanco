@@ -5,6 +5,7 @@ import { ChevronLeft, Server, UserRound } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 function Layout({ children }) {
   const path = usePathname();
@@ -25,7 +26,14 @@ function Layout({ children }) {
 
 const Banner = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 grow basis-[300px] h-full  rounded-l-xl text-white shadow-xl bg-[url('/background.jpg')] bg-cover bg-center"></div>
+    <Image
+      src={"/background.jpg"}
+      alt="Background"
+      width={400}
+      height={800}
+      className="object-cover object-right grow basis-[300px] h-full  rounded-l-xl shadow-xl"
+      priority
+    />
   );
 };
 

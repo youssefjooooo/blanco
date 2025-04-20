@@ -1,5 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "../ui/button";
@@ -31,6 +31,7 @@ const AccountInfo = ({ userData }) => {
             height={20}
             className="object-cover object-center"
             quality={50}
+            priority
           />
         </div>
 
