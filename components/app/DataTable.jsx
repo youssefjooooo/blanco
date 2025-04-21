@@ -62,7 +62,7 @@ export default function DataTable({ data, showNew, setShowNew }) {
   return (
     <div className="w-full ">
       <TableHeaders table={table} setShowNew={setShowNew} showNew={showNew} />
-      <D_table table={table} columns={columns} loading={loading} />
+      <D_table data={data} table={table} columns={columns} loading={loading} />
       <Navigation table={table} />
     </div>
   );
@@ -122,7 +122,7 @@ const Navigation = ({ table }) => {
   );
 };
 
-const D_table = ({ table, columns, loading }) => {
+const D_table = ({ table, columns, loading, data }) => {
   return (
     <div className="rounded-md border">
       <Table>
@@ -158,7 +158,7 @@ const D_table = ({ table, columns, loading }) => {
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                {loading ? "Loading...." : "No results."}
+                {loading ? "Loading...." : data.length > 0 && "No results."}
               </TableCell>
             </TableRow>
           )}
