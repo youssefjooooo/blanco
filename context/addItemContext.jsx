@@ -14,22 +14,31 @@ export const AddItemProvider = ({ children }) => {
 
   useEffect(() => {
     const getPayments = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(
-          "https://blanco-backend.vercel.app/api/v1/expences"
-        );
+      const token = localStorage.getItem("token");
+      if (token)
+        try {
+          setLoading(true);
+          const res = await fetch(
+            "https://blanco-backend.vercel.app/api/v1/expences",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
 
-        if (!res.ok)
-          throw new Error("There was a problem with the fetch request.");
+          if (!res.ok)
+            throw new Error("There was a problem with the fetch request.");
 
-        const data = await res.json();
-        setPayments(data.data.expences);
-      } catch (err) {
-        console.error("Error", err);
-      } finally {
-        setLoading(false);
-      }
+          const data = await res.json();
+          setPayments(data.data.expences);
+        } catch (err) {
+          console.error("Error", err);
+        } finally {
+          setLoading(false);
+        }
     };
 
     getPayments();

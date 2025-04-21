@@ -31,7 +31,6 @@ const LoginForm = () => {
       );
 
       const res_data = await res.json();
-      console.log(res_data);
       // If login failed
       if (!res.ok) {
         toast(<div className="text-red-500">{res_data.message}</div>);
