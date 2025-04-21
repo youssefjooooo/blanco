@@ -42,11 +42,11 @@ function UserCard() {
   const [openAcc, setOpenAcc] = useState(false);
   return (
     userData.name && (
-      <div className="rounded-xl rounded-b-3xl shadow-md p-2 flex items-center justify-between gap-18 min-w-[400px] relative z-50 border">
-        <p className="font-semibold text-2xl px-2 pl-6">{userData.name}</p>
+      <div className="rounded-xl rounded-b-3xl shadow-md p-1 flex items-center justify-between gap-18 min-w-[400px] relative z-50 border">
+        <p className="font-semibold text-xl px-4">{userData.name}</p>
         <div
           onClick={() => setOpenAcc(!openAcc)}
-          className={`w-12 h-12 rounded-full shadow p-3 bg-black text-white flex items-center justify-center cursor-pointer `}>
+          className={`w-12 h-12 rounded-xl rounded-br-3xl shadow p-3 bg-black text-white flex items-center justify-center cursor-pointer `}>
           <CircleUserRound size={48} strokeWidth={2} absoluteStrokeWidth />
         </div>
         <AnimatePresence>

@@ -37,7 +37,7 @@ export const Overview = () => {
   return (
     <div className="flex flex-col gap-4 mb-8">
       <div className="w-full flex items-center justify-between gap-10">
-        <h2 className="text-4xl font-bold ">Expences Overview</h2>
+        <h2 className="text-4xl font-semibold ">Expences Overview</h2>
         <UserCard />
       </div>
 

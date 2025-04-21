@@ -7,6 +7,7 @@ import { LogIn } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const SignupForm = () => {
   const {
@@ -57,9 +58,16 @@ const SignupForm = () => {
       transition={{ duration: 0.25 }}
       onSubmit={handleSubmit(onSubmit)}
       className="rounded-r-xl  p-5  relative  h-full bg-white  flex  flex-col justify-between border-l-0">
-      <div className="ml-20">
-        <h1 className="text-3xl font-bold">Let's get you started!</h1>
-        <p className="text-[#999]">Start by filling in the sign-up form</p>
+      <div className="ml-20 text-center">
+        <h2 className="text-3xl font-bold mb-2">Let's get you started!</h2>
+        <p className="text-[#999]">
+          Start by filling in the sign-up form below to create your account and
+          unlock all features. <br />
+          Already have an account?
+          <Link href="/auth/login" className="underline ml-1">
+            Log in here.
+          </Link>
+        </p>
       </div>
       <div className="flex flex-col justify-center gap-4  p-4 py-6  rounded border">
         <div>
@@ -131,32 +139,18 @@ const SignupForm = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-3">
-        <p className="text-sm text-gray-500 px-4">
-          By signing up, you agree to our{" "}
-          <a href="/terms" className="underline">
-            Terms of Service
-          </a>{" "}
-          and{" "}
-          <a href="/privacy" className="underline">
-            Privacy Policy
-          </a>
-          .
-        </p>
-
-        <Button
-          disabled={isSubmitting}
-          type="submit"
-          className="flex justify-between mt-4 ">
-          {isSubmitting ? (
-            "Loading ... "
-          ) : (
-            <>
-              Sign Up <LogIn />
-            </>
-          )}
-        </Button>
-      </div>
+      <Button
+        disabled={isSubmitting}
+        type="submit"
+        className="flex justify-between mt-4 ">
+        {isSubmitting ? (
+          "Loading ... "
+        ) : (
+          <>
+            Sign Up <LogIn />
+          </>
+        )}
+      </Button>
     </motion.form>
   );
 };

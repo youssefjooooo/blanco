@@ -71,7 +71,7 @@ export default function DataTable({ data, showNew, setShowNew }) {
 const TableHeaders = ({ table, setShowNew, showNew }) => {
   return (
     <div className="flex items-center justify-between py-4">
-      <h2 className="font-bold text-3xl">My Expences</h2>
+      <h2 className="font-semibold text-3xl">My Expences</h2>
       <div className="flex items-center w-[50%] justify-center gap-3">
         <div className="relative grow">
           <Input
@@ -158,7 +158,11 @@ const D_table = ({ table, columns, loading, data }) => {
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                {loading ? "Loading...." : data.length > 0 && "No results."}
+                {loading
+                  ? "Loading..."
+                  : data.length === 0
+                  ? "No results found."
+                  : null}
               </TableCell>
             </TableRow>
           )}

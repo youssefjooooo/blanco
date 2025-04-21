@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [token, setToken] = useState("");
@@ -74,11 +75,15 @@ const LoginForm = () => {
       transition={{ duration: 0.25 }}
       onSubmit={handleSubmit(onSubmit)}
       className="rounded-r-xl  p-5 transform -translate-x-0  h-full bg-white  flex  flex-col justify-between ">
-      <div className="ml-20">
-        <h1 className="text-3xl font-bold">Let's get you started!</h1>
+      <div className="ml-20  text-center">
+        <h1 className="text-3xl font-bold mb-2">Let's get you started!</h1>
         <p className="text-[#999]">
-          Login using your email and password. <br /> Don't have an account?
-          signup
+          Welcome back! Please log in using your email and password to access
+          your account and continue where you left off. <br />
+          Don't have an account yet?
+          <Link href="/auth/signup" className="underline ml-1">
+            Sign up here to get started.
+          </Link>
         </p>
       </div>
       <div className="p-4 py-10 flex flex-col gap-4 rounded border ">
@@ -105,6 +110,11 @@ const LoginForm = () => {
             <p className="text-red-500 text-sm">{errors.password.message}</p>
           )}
         </div>
+        <Link
+          className="text-[#999] underline self-end"
+          href={`/auth/reset-password`}>
+          Forgot Password?
+        </Link>
       </div>
       <Button
         disabled={isSubmitting}
