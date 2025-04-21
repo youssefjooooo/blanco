@@ -33,6 +33,7 @@ const SignupForm = () => {
           }),
         }
       );
+
       const res_data = await res.json();
       if (!res.ok) {
         toast(<div className="text-red-500">{res_data.message}</div>);
@@ -44,7 +45,7 @@ const SignupForm = () => {
     } catch (err) {
       console.error(err);
       toast(
-        <div className="text-red-500">{err || "Something went very wrong"}</div>
+        <div className="text-red-500">{err || "Something went wrong"}</div>
       );
     }
   };
