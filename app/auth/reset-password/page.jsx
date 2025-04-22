@@ -26,8 +26,8 @@ function Page() {
     try {
       const res = await fetch(
         showPasswordsForm
-          ? `http://localhost:3000/api/v1/users/resetPassword/${data.token}`
-          : "http://localhost:3000/api/v1/users/forgotPassword",
+          ? `https://blanco-backend.vercel.app/api/v1/users/resetPassword/${data.token}`
+          : "https://blanco-backend.vercel.app/api/v1/users/forgotPassword",
         {
           method: showPasswordsForm ? "PATCH" : "POST",
           headers: { "Content-Type": "application/json" },
