@@ -11,7 +11,6 @@ import { toast } from "sonner";
 import Link from "next/link";
 
 const LoginForm = () => {
-  const [token, setToken] = useState("");
   const {
     register,
     handleSubmit,
@@ -43,10 +42,10 @@ const LoginForm = () => {
             <h2 className="text-xl font-bold">Hi there!</h2>
           </div>
         );
+
+        localStorage.setItem("token", res_data.token);
+        router.push("/");
       }
-      localStorage.setItem("token", res_data.token);
-      setToken(res_data.token);
-      router.push("/");
     } catch (err) {
       console.error(err);
       toast(

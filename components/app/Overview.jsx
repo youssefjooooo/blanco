@@ -2,8 +2,7 @@ import { color } from "framer-motion";
 import { MiniCard } from "./MiniCard";
 import { useAddItem } from "../../context/addItemContext";
 import UserCard from "../app/UserCard";
-export const Overview = () => {
-  const { payments } = useAddItem();
+export const Overview = ({ payments }) => {
   let total = 0;
   payments.map((item) => (total += +item.amount));
   const last_expense = payments[payments.length - 1]?.amount || 0;

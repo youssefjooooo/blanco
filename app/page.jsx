@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 function Home() {
   const [showSheet, SetShowSheet] = React.useState(false);
   const [showNew, setShowNew] = React.useState(false);
-
+  const [payments, setPayments] = React.useState([]);
   const router = useRouter();
 
   React.useEffect(() => {
@@ -43,11 +43,12 @@ function Home() {
         exit={{ opacity: 0 }}
         className=" w-full h-full p-10 rounded-xl  bg-white">
         {/* OVERVIEW  */}
-        <Overview />
+        <Overview payments={payments} />
         {/* THE DATA TABLE  */}
         <DataTable
           showSheet={showSheet}
           SetShowSheet={SetShowSheet}
+          setPayments={setPayments}
           showNew={showNew}
           setShowNew={setShowNew}
         />

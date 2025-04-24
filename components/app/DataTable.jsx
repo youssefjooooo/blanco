@@ -33,7 +33,7 @@ import { getColumns } from "./columns";
 import { useAddItem } from "../../context/addItemContext";
 import { useRouter } from "next/navigation";
 
-export default function DataTable({ showNew, setShowNew }) {
+export default function DataTable({ showNew, setShowNew, setPayments }) {
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
@@ -67,6 +67,7 @@ export default function DataTable({ showNew, setShowNew }) {
 
         const data = await res.json();
         setData(data.data.expences);
+        setPayments(data.data.expences);
       } catch (err) {
         console.error("Error", err);
       } finally {
