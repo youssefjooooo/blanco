@@ -31,13 +31,15 @@ import {
 
 import { getColumns } from "./columns";
 import { useAddItem } from "../../context/addItemContext";
+import { useRouter } from "next/navigation";
 
-export default function DataTable({ data, showNew, setShowNew }) {
+export default function DataTable({ showNew, setShowNew }) {
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
 
+  const data = useAddItem().payments;
   const { handleDeleteItem, loading } = useAddItem();
   const columns = getColumns(handleDeleteItem);
   const table = useReactTable({
@@ -158,11 +160,8 @@ const D_table = ({ table, columns, loading, data }) => {
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                {loading
-                  ? "Loading..."
-                  : data.length === 0
-                  ? "No results found."
-                  : null}
+                {loading && "Loading..."}
+                {!loading && data.length === 0 && "No results found."}
               </TableCell>
             </TableRow>
           )}

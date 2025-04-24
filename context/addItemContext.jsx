@@ -1,6 +1,7 @@
 "use client";
 
 const { createContext, useContext, useState, useEffect } = require("react");
+import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 
 // 1- CREATE CONTEXT
@@ -11,9 +12,17 @@ export const AddItemProvider = ({ children }) => {
   const [payments, setPayments] = useState([]);
   const [reload, setReload] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("");
+
+  const path = usePathname();
+  const handleReload = () => setReload((prev) => !prev);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const T = localStorage.getItem("token");
+    setToken(T);
+  }, []);
+
+  useEffect(() => {
     const getPayments = async () => {
       try {
         setLoading(true);
@@ -27,6 +36,7 @@ export const AddItemProvider = ({ children }) => {
             },
           }
         );
+        handleReload();
 
         if (!res.ok)
           throw new Error("There was a problem with the fetch request.");
@@ -40,10 +50,8 @@ export const AddItemProvider = ({ children }) => {
       }
     };
 
-    if (token) getPayments();
-  }, [reload]);
-
-  const handleReload = () => setReload((prev) => !prev);
+    if (token && path === "/") getPayments();
+  }, [reload, token]);
 
   const handleCreateItem = async (item) => {
     if (item.title !== "") {

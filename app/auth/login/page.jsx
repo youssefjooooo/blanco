@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { LogIn } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
@@ -12,13 +12,14 @@ import Link from "next/link";
 
 const LoginForm = () => {
   const [token, setToken] = useState("");
-  const router = useRouter();
   const {
     register,
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  const router = useRouter();
 
   const onSubmit = async (data) => {
     try {
@@ -32,20 +33,20 @@ const LoginForm = () => {
       );
 
       const res_data = await res.json();
-      // If login failed
       if (!res.ok) {
         toast(<div className="text-red-500">{res_data.message}</div>);
       }
-      if (res.ok)
+      if (res.ok) {
         toast(
           <div>
             Login successfull
             <h2 className="text-xl font-bold">Hi there!</h2>
           </div>
         );
-
-      // Login succeeded
+      }
+      localStorage.setItem("token", res_data.token);
       setToken(res_data.token);
+      router.push("/");
     } catch (err) {
       console.error(err);
       toast(
@@ -53,13 +54,6 @@ const LoginForm = () => {
       );
     }
   };
-
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem("token", token);
-      router.push("/");
-    }
-  }, [token]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");

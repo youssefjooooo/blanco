@@ -5,13 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import DataTable from "../components/app/DataTable";
 import { Overview } from "../components/app/Overview";
 import { AddNewCard } from "../components/app/AddNewCard";
-import { useAddItem } from "../context/addItemContext";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function Home() {
   const [showSheet, SetShowSheet] = React.useState(false);
   const [showNew, setShowNew] = React.useState(false);
-  const { payments } = useAddItem();
 
   const router = useRouter();
 
@@ -50,7 +48,6 @@ function Home() {
         <DataTable
           showSheet={showSheet}
           SetShowSheet={SetShowSheet}
-          data={payments}
           showNew={showNew}
           setShowNew={setShowNew}
         />
