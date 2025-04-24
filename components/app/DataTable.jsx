@@ -39,8 +39,45 @@ export default function DataTable({ showNew, setShowNew }) {
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
 
-  const data = useAddItem().payments;
-  const { handleDeleteItem, loading } = useAddItem();
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  let token;
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
+
+  React.useEffect(() => {
+    const getPayments = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(
+          "https://blanco-backend.vercel.app/api/v1/expences",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!res.ok)
+          throw new Error("There was a problem with the fetch request.");
+
+        const data = await res.json();
+        setData(data.data.expences);
+      } catch (err) {
+        console.error("Error", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (token) getPayments();
+  }, [token]);
+
+  const { handleDeleteItem } = useAddItem();
   const columns = getColumns(handleDeleteItem);
   const table = useReactTable({
     data,
